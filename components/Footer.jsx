@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from "next/link";
-import { FaInstagramSquare, FaFacebook } from "react-icons/fa";
+import { FaInstagramSquare, FaFacebook, FaGithub } from "react-icons/fa";
 
 const Footer = () => (
     <footer className="bg-white dark:bg-gray-900">
@@ -56,13 +56,15 @@ const Footer = () => (
             </div>
             <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <div className="sm:flex sm:items-center sm:justify-between">
-                <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024
+                <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024&nbsp;
                     <Link href="https://marcosberta.vercel.app/" className="hover:underline">
                         Esta aplicación fue desarrollada por mak2220DevOps™
                     </Link>. All Rights Reserved.
                 </span>
                 <div className="flex mt-4 sm:justify-center sm:mt-0">
-                    {/* Aquí van los iconos con enlaces */}
+                    <Link href="https://www.github.com">
+                        <FaGithub size={30} />
+                    </Link>
                 </div>
             </div>
         </div>

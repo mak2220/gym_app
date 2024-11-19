@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
+import Link from "next/link";
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 
 const Navbar = () => {
@@ -14,13 +15,13 @@ const Navbar = () => {
 
   // Array containing navigation items
   const navItems = [
-    { id: 1, text: 'Inicio' },
-    { id: 2, text: 'Staff' },
-    { id: 3, text: 'Horarios' },
-    { id: 4, text: 'Rutinas' },
-    { id: 5, text: 'Ejemplos' },
-    { id: 6, text: 'Testimonios' },
-    { id: 7, text: 'Contacto' },
+    { id: 1, text: 'Inicio', route: "/" },
+    { id: 2, text: 'Staff', route: "/staff" },
+    { id: 3, text: 'Horarios', route: "/horarios" },
+    { id: 4, text: 'Rutinas', route: "/rutinas" },
+    { id: 5, text: 'Ejemplos', route: "/ejemplos" },
+    { id: 6, text: 'Testimonios', route: "/testimonios" },
+    { id: 7, text: 'Contacto', route: "/contacto" },
   ];
 
   return (
@@ -35,7 +36,7 @@ const Navbar = () => {
             key={item.id}
             className='p-4 hover:bg-[#00df9a] rounded-xl m-2 cursor-pointer duration-300 hover:text-black'
           >
-            {item.text}
+            <Link href={item.route}>{item.text}</Link>
           </li>
         ))}
       </ul>
@@ -62,7 +63,7 @@ const Navbar = () => {
             key={item.id}
             className='p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
           >
-            {item.text}
+            <Link href={item.route}>{item.text}</Link>
           </li>
         ))}
       </ul>
