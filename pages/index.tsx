@@ -31,7 +31,7 @@ export default function Home({
   isConnected,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <main className="bg-[url('/image/bg-home.jpeg')] bg-cover bg-center min-h-screen">
+    <main className="bg-[url('/images/bg-home.jpeg')] bg-cover bg-center min-h-screen">
       {isConnected ? (
         <section className="flex flex-col items-center h-screen">
           <h1 className="font-edu text-size-2.5 text-yellow-500 pt-14 lg:text-size-4.5">
