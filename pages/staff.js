@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function Staff ({staff}) {
     return (
         <div className="min-h-screen bg-gray-100">
-            <header className="bg-gradient-to-b from-purple-700/80 to-purple-300/50 text-black py-12 text-center">
+            <header className="bg-gradient-to-b from-green-700/80 to-green-300/50 text-black py-12 text-center">
                 <h1 className="text-4xl font-bold">Conoce a Nuestro Equipo</h1>
                 <p className="mt-2 text-lg">Profesionales apasionados por ayudarte a alcanzar tus metas</p>
             </header>
