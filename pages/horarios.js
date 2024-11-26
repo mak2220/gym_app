@@ -1,6 +1,8 @@
 "use client"
 
-export default function Horarios (){
+import clientPromise from "../lib/mongodb";
+
+export default function Horarios ({horarios}){
     return(
         <div className="min-h-screen bg-gray-100">
             <header className="bg-gradient-to-b from-green-700/80 to-green-300/50 text-black py-12 text-center">
@@ -10,35 +12,72 @@ export default function Horarios (){
                 </p>
             </header>
             <main>
-                <div class="overflow-x-auto">
-                    <table class="table-auto border-collapse border w-full text-base text-black bg-white">
+                {horarios.map((horario)=>(
+                    <div 
+                        key={horario._id} 
+                        className="overflow-x-auto sm:overflow-x-scroll"
+                    >
+                    <table className="table-auto border-collapse border w-full text-sm md:text-lg text-black bg-white">
                         <thead>
-                            <tr class="text-center">
-                                <th class="px-4 py-2">Profesor</th>
-                                <th class="px-4 py-2">Horas</th>
-                                <th class="px-4 py-2">Tipo</th>
+                            <tr className="text-center">
+                                <th className="px-4 py-2 text-center break-words">Profesor</th>
+                                <th className="px-4 py-2 text-center break-words">Tipo</th>
+                                <th className="px-4 py-2 text-center break-words">Días</th>
+                                <th className="px-4 py-2 text-center break-words">Horas</th>
                             </tr>
                         </thead>
-                    <tbody>
-                        <tr class="hover:bg-gray-100">
-                            <td class="px-4 py-2">Juan</td>
-                            <td class="px-4 py-2">25</td>
-                            <td class="px-4 py-2">España</td>
-                        </tr>
-                        <tr class="hover:bg-gray-100">
-                            <td class="px-4 py-2">María</td>
-                            <td class="px-4 py-2">30</td>
-                            <td class="px-4 py-2">México</td>
-                        </tr>
-                        <tr class="hover:bg-gray-100">
-                            <td class="px-4 py-2">Carlos</td>
-                            <td class="px-4 py-2">28</td>
-                            <td class="px-4 py-2">Argentina</td>
-                        </tr>
-                    </tbody>
-                </table>    
-            </div>
-        </main>
-    </div>
+                        <tbody>
+                            <tr className="hover:bg-gray-100">
+                                <td className="px-4 py-2 text-center break-words">{horario.profesor[3]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.entrenamiento[0]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.dias[0]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.horas[0]} y de {horario.horas[3]}</td>
+                            </tr>
+                            <tr className="hover:bg-gray-100">
+                                <td className="px-4 py-2 text-center break-words">{horario.profesor[1]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.entrenamiento[2]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.dias[1]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.horas[2]}</td>
+                            </tr>
+                            <tr className="hover:bg-gray-100">
+                                <td className="px-4 py-2 text-center break-words">{horario.profesor[0]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.entrenamiento[1]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.dias[2]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.horas[1]}</td>
+                            </tr>
+                            <tr className="hover:bg-gray-100">
+                                <td className="px-4 py-2 text-center break-words">{horario.profesor[2]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.entrenamiento[3]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.dias[1]}</td>
+                                <td className="px-4 py-2 text-center break-words">{horario.horas[0]}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                ))}
+                
+            </main>
+        </div>
     )
+}
+
+export async function getServerSideProps() {
+    try {
+        const client = await clientPromise;
+        const db = client.db("app_gym");
+
+        const horarios = await db
+            .collection("horarios")
+            .find({})
+            .sort({ _id: 1 })
+            .limit(20)
+            .toArray();
+
+        return {
+            props: { horarios: JSON.parse(JSON.stringify(horarios)) },
+            
+        };
+    } catch (e) {
+        console.error(e);
+    }
 }

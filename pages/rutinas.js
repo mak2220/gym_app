@@ -5,7 +5,7 @@ import clientPromise from "../lib/mongodb";
 
 export default function Rutinas({ rutinas }) {
     return (
-      <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100">
             <header className="bg-gradient-to-b from-green-700/80 to-green-300/50 text-black py-12 text-center">
                 <h1 className="text-4xl font-bold">Conoce a Nuestras Rutinas Especializadas</h1>
                 <p className="mt-2 text-lg">
