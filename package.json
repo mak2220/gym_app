@@ -3,9 +3,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "server": "node server.js"
   },
   "dependencies": {
+    "express": "^4.21.1",
     "mongodb": "^6.5.0",
     "next": "latest",
     "nodemailer": "^6.9.16",

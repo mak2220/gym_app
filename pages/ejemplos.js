@@ -12,13 +12,21 @@ export default function Ejemplos ({ejemplos}){
                 </p>
             </header>
             <main>
-                <ul>
+                <ul className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
                 {ejemplos.map((ejemplo)=>(
                     <li 
                         key={ejemplo._id}
-                        className="text-black"
+                        className="w-full max-w-4xl"
                     >
-                        <h1>{ejemplo.ejercise}</h1>
+                        <h1 className="text-2xl font-bold text-gray-800 mb-6">{ejemplo.ejercise}</h1>
+                        <iframe
+                            src={ejemplo.src}
+                            className="w-full h-96 rounded-lg shadow-lg border border-gray-300"
+                            allowFullScreen
+                            title={ejemplo.ejercise}
+                            sandbox="allow-scripts allow-same-origin allow-presentation"
+                            >
+                        </iframe>
                     </li>
                 ))}
                 </ul>
@@ -47,3 +55,4 @@ export async function getServerSideProps() {
         console.error(e);
     }
 }
+//<iframe width="789" height="444" src="https://www.youtube.com/embed/WwHuwfuK2qM" title="Peso Muerto con Barra con PowerExplosive - HSN Guía Ejercicios" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
